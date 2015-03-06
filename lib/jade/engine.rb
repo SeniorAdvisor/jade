@@ -3,7 +3,8 @@ require 'sprockets/engines'
 
 module Jade
   class Engine < Rails::Engine
-    initializer "jade.configure_rails_initialization", :group => :all do |app|
+    #initializer "jade.configure_rails_initialization", :group => :all do |app|
+    config.before_initialize do |app|
       next unless app.config.assets.enabled
       env = app.assets || Sprockets
       env.register_engine '.jade', ::Jade::Template
